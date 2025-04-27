@@ -2,21 +2,45 @@
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Création du Frame
+-- Création du Frame (le panel principal)
 local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 300, 0, 150)
-Frame.Position = UDim2.new(0.5, -150, 0.5, -75)
-Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.Size = UDim2.new(0, 400, 0, 250) -- Taille plus grande pour un beau design
+Frame.Position = UDim2.new(0.5, -200, 0.5, -125)
+Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 Frame.BorderSizePixel = 0
+Frame.BackgroundTransparency = 0.2
 Frame.Parent = ScreenGui
 
--- Création du Label (texte)
-local Label = Instance.new("TextLabel")
-Label.Size = UDim2.new(1, 0, 1, 0)
-Label.Position = UDim2.new(0, 0, 0, 0)
-Label.BackgroundTransparency = 1
-Label.Text = "Haze Hub"
-Label.TextColor3 = Color3.fromRGB(255, 255, 255)
-Label.TextScaled = true
-Label.Font = Enum.Font.GothamBold
-Label.Parent = Frame
+-- Création du coin arrondi pour un design plus moderne
+Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame.BorderRadius = UDim.new(0, 15) -- Coins arrondis
+
+-- Création du titre du panel
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.Text = "Haze Hub"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextScaled = true
+Title.Font = Enum.Font.GothamBold
+Title.TextStrokeTransparency = 0.8
+Title.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+Title.Parent = Frame
+
+-- Création du bouton "Fermer"
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 100, 0, 50)
+CloseButton.Position = UDim2.new(0.5, -50, 1, -50) -- Position sous le texte
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 85, 85) -- Couleur rouge
+CloseButton.Text = "Fermer"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.TextScaled = true
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.BorderSizePixel = 0
+CloseButton.Parent = Frame
+
+-- Fonction pour fermer le panel
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy() -- Supprime l'interface quand le bouton est cliqué
+end)
